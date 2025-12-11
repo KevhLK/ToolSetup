@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Script de continuacion al zshSetup donde se instalan las tools y se añaden las caracteristicas y plugins necesarias:
 
 # Colours
@@ -12,19 +11,17 @@ purplecolour="\e[0;35m\033[1m"
 turquoisecolour="\e[0;36m\033[1m"
 graycolour="\e[0;37m\033[1m"
 
-#FUNCIONES
+# FUNCIONES
 installTools ()
 { 
-tools_to_install="net-tools unrar ripgrep git curl neovim wget btop zoxide tmux screen python3 python3-pip bat make"
+tools_to_install="net-tools unrar ripgrep git curl wget btop zoxide tmux screen python3 python3-pip bat make"
 echo -e "\n--- Actualizando la lista de paquetes con apt ---"
 sudo apt update || { echo -e "[!] ERROR al actualizar apt."; exit 1; }
 
-echo -e "\n--- Instalando las herramientas ---"
+echo -e "\n--- Instalando herramientas ---"
 sudo apt install -y $tools_to_install || { echo -e "[!] ERROR al instalar herramientas."; exit 1; }
 sudo snap install lsd
-
-# IF para: 1. Revisar si esta nvim, 2. si no esta instalar la version mas reciente y añadir el nvchad, si por el contrario si esta pedir borrar el nvim manualmente y ejecutar el script NvChadSetup.sh para poder tener la version mas reciente con el plugin. 
-
+echo -e "\n--- Herramientas instaladas ---"
 }
 
 install_plugins ()
@@ -34,7 +31,7 @@ mkdir -p $HOME/.zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 wget -O ~/.zsh/sudo.plugin.zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-echo -e "[+] Extensiones aplicadas."
+echo -e "[+] Extensiones instaladas!"
 }
 
 adds_to_zshrc ()
@@ -82,8 +79,9 @@ echo 'eval "$(zoxide init zsh)"' >> $HOME/.zshrc
 setup_neovim_config() 
 {
 echo "\n[+] Configurando NeoVim..."
-echo "[!] Quieres seguir configurando Nvim? borraremos el programa para instalar la version mas reciente i aplicaremos el nvchad, en caso de ya tenerlo o no querer que se reinstale diga que no, en caso de querer, diga que si (si/no en minusculas) v "
+echo "[!] Quieres seguir configurando Nvim? Se eliminará el programa para instalar la version mas reciente y aplicaremos el NvChad, en caso de ya tenerlo o no querer que se reinstale indique 'no' a continuación, en caso de querer proceder, indique 'si', (si/no en minusculas): "
 read siNo
+
 if [[ $siNo == si ]]; then
   if [[ -d $HOME/.config/nvim ]]; then
     # Borrado
