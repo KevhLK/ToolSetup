@@ -36,5 +36,5 @@ fi
 chsh -s $(which zsh) # ZSH como shell predet.
 
 # 
-echo -e "\n--- REINCIA LA SESION PARA ESTABLECER LA ZSH ---\n"
+echo -e "\n--- REINCIA LA SESION PARA ESTABLECER LA ZSH CORRECTAAMENTE ---\n"
 

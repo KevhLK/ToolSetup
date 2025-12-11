@@ -105,7 +105,7 @@ if [[ $siNo == si ]]; then
     echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> $HOME/.zshrc
     git clone https://github.com/NvChad/starter ~/.config/nvim 
   fi
-echo "[+] Reinicia la terminal y escribe nvim para acabar de configurarlo."
+echo "[+] Listo! Reinicia la terminal y escribe 'nvim' para acabar de configurarlo."
 
 elif [[ $siNo == no ]]; then 
   echo "[·] Cancelando la instalación de NVChad..."
