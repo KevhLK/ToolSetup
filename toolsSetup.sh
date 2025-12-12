@@ -79,7 +79,7 @@ echo 'eval "$(zoxide init zsh)"' >> $HOME/.zshrc
 setup_neovim_config() 
 {
 echo -e "\n${greencolour}[+]${endcolour}${graycolour} Configurando NeoVim...${endcolour}"
-echo "${redcolour}[!]${endcolour}${graycolour} Quieres seguir configurando Nvim? Se eliminará el programa para instalar la version mas reciente y aplicaremos el NvChad, en caso de ya tenerlo o no querer que se reinstale indique '${redcolour}no${endcolour}${graycolour}' a continuación, en caso de querer proceder, indique '${greencolour}si${endcolour}${graycolour}', (si/no en minusculas): ${endcolour}"
+echo -e "${redcolour}[!]${endcolour}${graycolour} Quieres seguir configurando Nvim? Se eliminará el programa para instalar la version mas reciente y aplicaremos el NvChad, en caso de ya tenerlo o no querer que se reinstale indique '${redcolour}no${endcolour}${graycolour}' a continuación, en caso de querer proceder, indique '${greencolour}si${endcolour}${graycolour}', (si/no en minusculas): ${endcolour}\c"
 read siNo
 
 if [[ $siNo == si ]]; then
@@ -105,13 +105,13 @@ if [[ $siNo == si ]]; then
     echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> $HOME/.zshrc
     git clone https://github.com/NvChad/starter ~/.config/nvim 
   fi
-echo -e "${greencolour}[+]${endcolour}${graycolour} Listo! Reinicia la terminal y escribe 'nvim' para acabar de configurarlo.${endcolour}"
+echo -e "\n${greencolour}[+]${endcolour}${graycolour} Listo! Reinicia la terminal y escribe 'nvim' para acabar de configurarlo.${endcolour}"
 
 elif [[ $siNo == no ]]; then 
-  echo -e "${bluecolour}[·]${endcolour}${graycolour} Cancelando la instalación de NVChad...${endcolour}"
+  echo -e "\n${bluecolour}[·]${endcolour}${graycolour} Cancelando la instalación de NVChad...${endcolour}"
 
 else
-  echo -e "${redcolour}[!] Error, no instalaremos el nvim al no reconcoder '$siNo'...${endcolour}"
+  echo -e "\n${redcolour}[!] Error, no instalaremos el nvim al no reconcoder '$siNo'...${endcolour}"
 
 fi
 }
