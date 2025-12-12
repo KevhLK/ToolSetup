@@ -15,28 +15,28 @@ graycolour="\e[0;37m\033[1m"
 installTools ()
 { 
 tools_to_install="net-tools unrar ripgrep git curl wget btop zoxide tmux screen python3 python3-pip bat make"
-echo -e "\n--- Actualizando la lista de paquetes con apt ---"
-sudo apt update || { echo -e "[!] ERROR al actualizar apt."; exit 1; }
+echo -e "\n${purplecolour}--- Actualizando la lista de paquetes con apt ---${endcolour}"
+sudo apt update || { echo -e "${redcolour}[!] ERROR al actualizar apt.${endcolour}"; exit 1; }
 
-echo -e "\n--- Instalando herramientas ---"
+echo -e "\n${purplecolour}--- Instalando herramientas ---${endcolour}"
 sudo apt install -y $tools_to_install || { echo -e "[!] ERROR al instalar herramientas."; exit 1; }
 sudo snap install lsd
-echo -e "\n--- Herramientas instaladas ---"
+echo -e "\n${purplecolour}--- Herramientas instaladas ---${endcolour}"
 }
 
 install_plugins ()
 {
-echo -e "\n[+] Instalando extensiones para la shell..."
+echo -e "\n${greencolour}[+]${endcolour}${graycolour} Instalando extensiones para la shell...${endcolour}"
 mkdir -p $HOME/.zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 wget -O ~/.zsh/sudo.plugin.zsh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-echo -e "[+] Extensiones instaladas!"
+echo -e "${greencolour}[+]${endcolour}${graycolour} Extensiones instaladas!${endcolour}"
 }
 
 adds_to_zshrc ()
 {
-echo -e "\n[+] Añadiendo contenido a la configuracion de tu zshrc..."
+echo -e "\n${greencolour}[+]${endcolour}${graycolour} Añadiendo contenido a la configuracion de tu zshrc...${endcolour}"
 
 sed -i 's#^ZSH_THEME=.*#ZSH_THEME="powerlevel10k/powerlevel10k"#' ~/.zshrc
 
@@ -78,8 +78,8 @@ echo 'eval "$(zoxide init zsh)"' >> $HOME/.zshrc
 
 setup_neovim_config() 
 {
-echo "\n[+] Configurando NeoVim..."
-echo "[!] Quieres seguir configurando Nvim? Se eliminará el programa para instalar la version mas reciente y aplicaremos el NvChad, en caso de ya tenerlo o no querer que se reinstale indique 'no' a continuación, en caso de querer proceder, indique 'si', (si/no en minusculas): "
+echo "\n${greencolour}[+]${endcolour}${graycolour} Configurando NeoVim...${endcolour}"
+echo "${redcolour}[!]${endcolour}${graycolour} Quieres seguir configurando Nvim? Se eliminará el programa para instalar la version mas reciente y aplicaremos el NvChad, en caso de ya tenerlo o no querer que se reinstale indique '${redcolour}no${endcolour}${graycolour}' a continuación, en caso de querer proceder, indique '${greencolour}si${endcolour}${graycolour}', (si/no en minusculas): ${endcolour}"
 read siNo
 
 if [[ $siNo == si ]]; then
@@ -105,13 +105,13 @@ if [[ $siNo == si ]]; then
     echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> $HOME/.zshrc
     git clone https://github.com/NvChad/starter ~/.config/nvim 
   fi
-echo "[+] Listo! Reinicia la terminal y escribe 'nvim' para acabar de configurarlo."
+echo "${greencolour}[+]${endcolour}${graycolour} Listo! Reinicia la terminal y escribe 'nvim' para acabar de configurarlo.${endcolour}"
 
 elif [[ $siNo == no ]]; then 
-  echo "[·] Cancelando la instalación de NVChad..."
+  echo "${bluecolour}[·]${endcolour}${graycolour} Cancelando la instalación de NVChad...${endcolour}"
 
 else
-  echo "[!] Error, no instalaremos el nvim al no reconcoder '$siNo'..."
+  echo "${redcolour}[!] Error, no instalaremos el nvim al no reconcoder '$siNo'...${endcolour}"
 
 fi
 }
