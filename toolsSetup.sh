@@ -21,6 +21,38 @@ sudo apt update || { echo -e "${redcolour}[!] ERROR al actualizar apt.${endcolou
 echo -e "\n${purplecolour}--- Instalando herramientas ---${endcolour}"
 sudo apt install -y $tools_to_install || { echo -e "[!] ERROR al instalar herramientas."; exit 1; }
 sudo snap install lsd
+
+echo -e "\n${purplecolour}--- INSTALACIÓN SSH ---${endcolour}"
+echo -e "\n${greencolour}[+]${endcolour}${graycolour} Quieres instalar SSH? Selecciona una de las opciones siguientes:${endcolour}"
+echo -e "\t1) ${greencolour}Instalar openssh-client${endcolour}"
+echo -e "\t2) ${redcolour}Instalar openssh-server${endcolour}"
+echo -e "\t3) ${bluecolour}Instalar ambos${endcolour}"
+echo -e "\t4) ${graycolour}No instalar ninguno${endcolour}"
+
+echo -e "\n${graycolour}Cual es tu elección? \c"
+read eleccionSSH
+
+case $eleccionSSH in
+    1)
+        echo -e "\n${greencolour}[+]${endcolour}${graycolour} Instalando Cliente SSH...${endcolour}"
+        sudo apt install openssh-client -y
+        ;;
+    2)
+        echo -e "\n${greencolour}[+]${endcolour}${graycolour} Instalando Servidor SSH...${endcolour}"
+        sudo apt install openssh-server -y
+        ;;
+    3)
+        echo -e "\n${greencolour}[+]${endcolour}${graycolour} Instalando Cliente y Servidor SSH...${endcolour}"
+        sudo apt install openssh-client openssh-server -y
+        ;;
+    4)
+        echo -e "${bluecolour}[·]${endcolour}${graycolour} Okey! No instalamos nada, sigamos...${endcolour}"
+        ;;
+    *)
+        echo -e "${redcolour}[!] No se reconoce la opcion '$eleccionSSH'! Saltando la instalacion...${endcolour}"
+        ;;
+esac
+
 echo -e "\n${purplecolour}--- Herramientas instaladas ---${endcolour}"
 }
 
