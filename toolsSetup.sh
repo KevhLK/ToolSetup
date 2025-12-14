@@ -148,10 +148,31 @@ else
 fi
 }
 
+tmuxConf()
+{
+touch $HOME/.tmux.conf
+cat << 'EOF_TMUX' >> $HOME/.tmux.conf
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+set -g mouse on
+
+bind r source-file ~/.tmux.conf \; display-message "tmux.conf recargado!"
+
+bind v split-window -h
+bind h split-window -v
+
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",xterm-256color:smcup@:rmcup@"
+EOF_TMUX
+}
+
 # Ejecucion FUNCIONES:
 installTools
 install_plugins
 adds_to_zshrc
+tmuxConf
 setup_neovim_config
 
 
