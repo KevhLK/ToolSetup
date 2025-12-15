@@ -1,7 +1,7 @@
 # ToolSetup - Scirpt auto instalación de Herramientas
 #### By KevhLK
 ---
-Este es un script de auto instalación que recopila las herramientas que utilizo habitualmente en distribuciones Linux basadas en Debian. Aunque las herramientas están pensadas para mi flujo de trabajo personal, este script sirve como una excelente base de partida para que otros usuarios puedan:
+Este es un script de auto instalación que recopila las herramientas que utilizo habitualmente en distribuciones Linux basadas en Debian. Aunque las herramientas están pensadas para mi flujo de trabajo personal, este script sirve como una base de partida para que otros usuarios puedan:
 
 * Adaptar y crear su propio script de instalación.
 * Instalar rápidamente un conjunto de utilidades probadas en entornos Debian.
