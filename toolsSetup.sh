@@ -150,22 +150,29 @@ fi
 
 tmuxConf()
 {
-touch $HOME/.tmux.conf
-cat << 'EOF_TMUX' >> $HOME/.tmux.conf
-set -g prefix C-a
-unbind C-b
-bind C-a send-prefix
+echo -e "\n${greencolour}[+]${endcolour}${graycolour} Quieres aplicar una configuracion de tmux o dejar la predeterminada, siempre puedes cambiarla en \"$HOME/.tmux.conf\" (si/no): ${endcolour}\c"
+read tmuxSiNo
 
-set -g mouse on
+if [[ $tmuxSiNo = si ]]; then 
+  touch $HOME/.tmux.conf
+  cat << 'EOF_TMUX' >> $HOME/.tmux.conf
+  set -g prefix C-a
+  unbind C-b
+  bind C-a send-prefix
 
-bind r source-file ~/.tmux.conf \; display-message "tmux.conf recargado!"
+  set -g mouse on
 
-bind v split-window -h
-bind h split-window -v
+  bind r source-file ~/.tmux.conf \; display-message "tmux.conf recargado!"
 
-set -g default-terminal "screen-256color"
-set -ga terminal-overrides ",xterm-256color:smcup@:rmcup@"
+  bind v split-window -h
+  bind h split-window -v
+
+  set -g default-terminal "screen-256color"
+  set -ga terminal-overrides ",xterm-256color:smcup@:rmcup@"
 EOF_TMUX
+else 
+  echo "${bluecolour}[·]${endcolour}${graycolour} Omitiendo configuracion de tmux...${endcolour}"
+fi
 }
 
 # Ejecucion FUNCIONES:
